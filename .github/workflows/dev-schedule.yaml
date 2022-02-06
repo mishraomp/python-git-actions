@@ -21,7 +21,7 @@ jobs:
         python-version: 3.9 #install the python needed
     - name: execute py script # run the main.py to get the latest data
       env:
-        API_KEY: ${{API_KEY}}
+        API_KEY: ${{ API_KEY }}
       run: |
         python main.py
 
