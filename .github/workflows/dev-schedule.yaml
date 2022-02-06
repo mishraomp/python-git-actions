@@ -8,9 +8,6 @@ on:
 jobs:
  Execute_Python_Script_in_Dev_environment:
    runs-on: ubuntu-latest
-   defaults:
-      run:
-        working-directory: app
    environment: dev
    steps:
     - name: checkout repo content
@@ -24,12 +21,12 @@ jobs:
         pip install pipenv
     - name: install dependencies
       run: |
-        pipenv install
+        pipenv install --deploy
     - name: execute python script # run the main.py to get the latest data
       env:
         API_KEY: ${{ secrets.API_KEY }}
         LOG_LEVEL: DEBUG
       run: |
-        python main.py
+        pipenv run app/main.py
 
 
