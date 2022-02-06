@@ -19,10 +19,8 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9 #install the python needed
-    - name: execute py script # run the main.py to get the latest data
+    - run: python main.py
       env:
         API_KEY: ${{ API_KEY }}
-      run: |
-        python main.py
 
 
