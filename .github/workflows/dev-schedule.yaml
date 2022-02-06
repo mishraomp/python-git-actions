@@ -2,15 +2,18 @@ name: Execute Python Script in Dev environment
 on:
   schedule:
     # * is a special character in YAML, so you have to quote this string
-    - cron:  '0/1 * * * *'
+    - cron:  '0/15 * * * *'
 jobs:
-  - name: Execute Python Script in Dev environment
-    runs-on: ubuntu-latest
-    environment: dev
-    steps:
-      - name: Execute Python Script in Dev environment
-        uses: actions/python-script@v1
-        with:
-          - python_script: ./app/main.py
-          - python_version: 3.9
+ Execute_Python_Script_in_Dev_environment:
+   runs-on: ubuntu-latest
+   defaults:
+      run:
+        working-directory: app
+   environment: dev
+   steps:
+     - name: Execute Python Script in Dev environment
+       uses: actions/python-script@v1
+       with:
+         python_script: ./main.py
+         python_version: 3.9
 
