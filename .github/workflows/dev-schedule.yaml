@@ -22,14 +22,14 @@ jobs:
         pip install pipenv
     - name: install dependencies
       run: pipenv install --deploy
-    - run: pipenv lock -r > requirements.txt
-    - name: install dependencies
-      run: pip install -r requirements.txt
+    #- run: pipenv lock -r > requirements.txt
+    #- name: install dependencies
+    #  run: pip install -r requirements.txt
     - name: execute python script # run the main.py to get the latest data
       env:
         API_KEY: ${{ secrets.API_KEY }}
         LOG_LEVEL: DEBUG
       run: |
-        python app/main.py
+        pipenv run python app/main.py
 
 
