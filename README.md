@@ -1,6 +1,6 @@
 # python-git-actions
 This repository demonstrates how to execute python scripts using git actions for different environments.
-Please follow the below steps to setup your environment. This repository has 3 environments: `dev`, `test` and `prod`. but you can add more environments.
+Please follow the below steps to set up your environment. This repository has 3 environments: `dev`, `test` and `prod`. but you can add more environments.
 
 1. Create a repository in GitHub.
 2. Clone the repository, create the branches as per your requirements, (`deploy/dev`, `deploy/test`, `deploy/prod`) in this case.
@@ -28,4 +28,13 @@ Please follow the below steps to setup your environment. This repository has 3 e
       2. Name your environment (`dev` or `test` or `prod`) Set which code branch to use for this environment. for example:- this repository uses `deploy/dev` for `dev` environment, `deploy/test` for `test` environment and `deploy/prod` for prod environment.
       3. Click and select `Selected branches` dropdown under `Deployment branches` and then click on `Add deployment branch rule` , this opens a modal window where you can type the branch name for this environment. This protects different branch from being deployed to the environment, and you will get error similar to this `Branch "main" is not allowed to deploy to dev due to environment protection rules.`
       4. if your script requires API_KEYS or other secrets, then you can create a secret in GitHub and add it to the environment. Click on `Add secret` under `Environment secrets` that opens up a modal, and then it is a key value pair. GitHub encrypts the secret and stores it in the environment.
-   7. Create a folder in your repository called `.github/workflows`, this contains all the deployment `.yaml` files which will have execution steps. This repo has 3 different `.yaml`, one for each environment.
+6. Create a folder in your repository called `.github/workflows`, this contains all the deployment `.yaml` files which will have execution steps. This repo has 3 different `.yaml`, one for each environment`${env}-schedule.yaml`.
+7. The yaml file contains instruction set which will be executed by GitHub during workflow execution. Few key aspects are mentioned below.
+      1. The scripts are run on a schedule basis, detailed information available in the link, navigate to the `schedule` section, https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows 
+      2. It uses cron to define the schedule and is on _**UTC timezone**_.
+         1. This repository also has `workflow_dispatch` which is to manually trigger the workflow for debugging purposes.
+      3. The jobs sections has steps to create the environment and execute the script.
+         1. runs-on: this defines which Operating System to use.
+         2. environment: which pre-configured environment to use (`dev` or `test` or `prod`).
+         3. The series of steps are pretty much same for all the environments,except if you need different environment variables. For Example: This repository has different log levels as environment variables.
+         4. The way to pass secrets as environment variables is  like `API_KEY: ${{ secrets.API_KEY }}` within the `env:` section. More details can be found here https://docs.github.com/en/actions/security-guides/encrypted-secrets
