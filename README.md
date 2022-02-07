@@ -1,9 +1,9 @@
 # python-git-actions
 This repository demonstrates how to execute python scripts using git actions for different environments.
-Please follow the below steps to setup your environment. This repository has 3 environments: dev, test and prod. but you can add more environments.
+Please follow the below steps to setup your environment. This repository has 3 environments: `dev`, `test` and `prod`. but you can add more environments.
 
 1. Create a repository in GitHub.
-2. Clone the repository, create the branches as per your requirements, (deploy/dev, deploy/test, deploy/prod) in this case.
+2. Clone the repository, create the branches as per your requirements, (`deploy/dev`, `deploy/test`, `deploy/prod`) in this case.
    1. you can create the branches directly in git or in your IDE.
    2. Development is not done on these branches , these branches are updated through pull requests only.
    3. Since the script is executed on a schedule, this approach of creating branches is necessary to avoid execution of code which is not ready for that environment.
@@ -28,3 +28,4 @@ Please follow the below steps to setup your environment. This repository has 3 e
       2. Name your environment (`dev` or `test` or `prod`) Set which code branch to use for this environment. for example:- this repository uses `deploy/dev` for `dev` environment, `deploy/test` for `test` environment and `deploy/prod` for prod environment.
       3. Click and select `Selected branches` dropdown under `Deployment branches` and then click on `Add deployment branch rule` , this opens a modal window where you can type the branch name for this environment. This protects different branch from being deployed to the environment, and you will get error similar to this `Branch "main" is not allowed to deploy to dev due to environment protection rules.`
       4. if your script requires API_KEYS or other secrets, then you can create a secret in GitHub and add it to the environment. Click on `Add secret` under `Environment secrets` that opens up a modal, and then it is a key value pair. GitHub encrypts the secret and stores it in the environment.
+   7. Create a folder in your repository called `.github/workflows`, this contains all the deployment `.yaml` files which will have execution steps. This repo has 3 different `.yaml`, one for each environment.
