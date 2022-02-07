@@ -13,7 +13,7 @@ jobs:
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content to GitHub runner.
         with:
-          ref: deploy/dev # Specify the branch to checkout.
+          ref: deploy/test # Specify the branch to checkout.
       - name: setup python
         uses: actions/setup-python@v2
         with:
