@@ -1,4 +1,4 @@
-name: Execute Python Script in Dev environment
+name: Execute Python Script in Test environment
 on:
   workflow_dispatch:
 
@@ -8,7 +8,7 @@ on:
 jobs:
   Execute_Python_Script_in_Test_environment:
     runs-on: ubuntu-latest
-    environment: dev
+    environment: test
     steps:
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content to GitHub runner.
