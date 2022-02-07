@@ -1,4 +1,4 @@
-name: Execute Python Script in Dev environment
+name: Execute Python Script in Prod environment
 on:
   workflow_dispatch:
 
