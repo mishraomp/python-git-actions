@@ -4,7 +4,7 @@ on:
 
   schedule:
     # * is a special character in YAML, so you have to quote this string
-    - cron:  '0 0 * * *'
+    - cron:  '1 * * * *'
 jobs:
   Execute_Python_Script_in_Prod_environment:
     runs-on: ubuntu-latest
