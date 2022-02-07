@@ -27,7 +27,7 @@ jobs:
       - name: execute python script # run the main.py to get the latest data
         env:
           API_KEY: ${{ secrets.API_KEY }}
-          LOG_LEVEL: DEBUG
+          LOG_LEVEL: INFO
         run: |
           pipenv run python app/main.py
 
