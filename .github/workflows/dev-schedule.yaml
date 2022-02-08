@@ -15,9 +15,15 @@ jobs:
       with:
         ref: deploy/dev # Specify the branch to checkout.
     - name: setup python
+      id: setup-python
       uses: actions/setup-python@v2
       with:
         python-version: 3.9 #install the python version needed
+    - name: cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.local/share/virtualenvs
+        key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
     - name: install pipenv
       run: |
         pip install --upgrade pip
