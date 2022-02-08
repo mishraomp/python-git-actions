@@ -20,14 +20,13 @@ Please follow the below steps to set up your environment. This repository has 3 
       3. Check all the checkboxes mentioned below.
          1. Require a pull request before merging
          2. Require approvals
-         3. Require review from Code Owners
-         4. Require signed commits
-         5. Include administrators
+         3. Include administrators
    6. Create 3 new environment in GitHub (dev,test and prod). you can create more based on your needs
       1. Go to the settings of the repository(the settings tab is only visible if you have admin permission on the repository), find the environment section, and click on `New Environment`, this will create a new environment, and you need to repeat this for the number of environments you need.
       2. Name your environment (`dev` or `test` or `prod`) Set which code branch to use for this environment. for example:- this repository uses `deploy/dev` for `dev` environment, `deploy/test` for `test` environment and `deploy/prod` for prod environment.
       3. Click and select `Selected branches` dropdown under `Deployment branches` and then click on `Add deployment branch rule` , this opens a modal window where you can type the branch name for this environment. This protects different branch from being deployed to the environment, and you will get error similar to this `Branch "main" is not allowed to deploy to dev due to environment protection rules.`
-      4. if your script requires API_KEYS or other secrets, then you can create a secret in GitHub and add it to the environment. Click on `Add secret` under `Environment secrets` that opens up a modal, and then it is a key value pair. GitHub encrypts the secret and stores it in the environment.
+      4. due to limitations on scheduled jobs, minimum threshold is 15 minutes and runs on base/default branch, which is `main` in this repository. From GitHub `You can schedule a workflow to run at specific UTC times using POSIX cron syntax. Scheduled workflows run on the latest commit on the default or base branch. The shortest interval you can run scheduled workflows is once every 15 minutes.`
+      5. if your script requires API_KEYS or other secrets, then you can create a secret in GitHub and add it to the environment. Click on `Add secret` under `Environment secrets` that opens up a modal, and then it is a key value pair. GitHub encrypts the secret and stores it in the environment.
 6. Create a folder in your repository called `.github/workflows`, this contains all the deployment `.yaml` files which will have execution steps. This repo has 3 different `.yaml`, one for each environment`${env}-schedule.yaml`.
 7. The yaml file contains instruction set which will be executed by GitHub during workflow execution. Few key aspects are mentioned below.
       1. The scripts are run on a schedule basis, detailed information available in the link, navigate to the `schedule` section, https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows 
