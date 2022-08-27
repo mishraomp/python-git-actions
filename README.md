@@ -1,5 +1,4 @@
-# python-git-actions
-This repository demonstrates how to execute python scripts using git actions for different environments.
+The source code is available here -> https://github.com/mishraomp/python-git-actions
 Please follow the below steps to set up your environment. This repository has 3 environments: `dev`, `test` and `prod`. but you can add more environments.
 
 1. Create a repository in GitHub.
